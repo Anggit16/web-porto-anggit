@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+
+    <title>Anggit Hardiyanto — Software Developer</title>
+    <meta
+      name="description"
+      content="Portofolio Anggit Hardiyanto — lulusan Teknik Informatika yang berfokus pada pengembangan perangkat lunak dengan JavaScript, PHP, Python, React.js, Laravel, Node.js, dan Kivy."
+    />
+    <meta name="author" content="Anggit Hardiyanto" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Anggit Hardiyanto" />
+    <meta property="og:title" content="Anggit Hardiyanto — Software Developer" />
+    <meta
+      property="og:description"
+      content="Portofolio Anggit Hardiyanto — lulusan Teknik Informatika yang berfokus pada pengembangan perangkat lunak."
+    />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Anggit Hardiyanto — Software Developer" />
+    <meta
+      name="twitter:description"
+      content="Portofolio Anggit Hardiyanto — lulusan Teknik Informatika yang berfokus pada pengembangan perangkat lunak."
+    />
+
+    <!--
+      TODO (setelah deploy, wajib domain & aset nyata):
+      tambahkan og:url, canonical, og:image/twitter:image, dan sitemap.xml.
+      Nilai tersebut sengaja dikosongkan agar tidak ada URL/aset dummy.
+    -->
+
+    <meta name="theme-color" content="#0a0c14" />
+
+    <!--
+      Terapkan tema SEBELUM paint untuk mencegah "flash" tema yang salah.
+      Logikanya harus sama dengan getInitialTheme() di src/theme/ThemeContext.jsx.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme')
+          var light = stored
+            ? stored === 'light'
+            : window.matchMedia('(prefers-color-scheme: light)').matches
+          var root = document.documentElement
+          if (light) root.classList.add('light')
+          var meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) meta.setAttribute('content', light ? '#f8fafc' : '#0a0c14')
+        } catch {
+          /* abaikan — tetap gunakan tema gelap default */
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

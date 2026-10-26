@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Design System — Portfolio
+   Dua tema: GELAP (default) dan TERANG (class `light` pada <html>).
+
+   Komponen TIDAK memakai warna mentah (charcoal, slate) atau varian `dark:`.
+   Semua memakai token SEMANTIK di bawah ini, sehingga pergantian tema cukup
+   mengubah nilai variabel di satu tempat — dan otomatis berlaku di seluruh UI.
+   ========================================================================== */
+
+@theme {
+  /* Brand ramp — tetap sama di kedua tema */
+  --color-accent-400: #818cf8;
+  --color-accent-500: #6366f1;
+  --color-accent-600: #4f46e5;
+
+  /* Token semantik — nilai untuk tema GELAP (default) */
+  --color-page: #0a0c14; /* latar halaman */
+  --color-surface: #0e1220; /* kartu / panel */
+  --color-raised: #141a2b; /* chip, kotak inset */
+  --color-border: #1c2338; /* garis default */
+  --color-border-strong: #263049; /* garis lebih tegas (batas kontrol) */
+  --color-fg: #f1f5f9; /* teks utama / judul */
+  --color-fg-muted: #cbd5e1; /* teks isi */
+  --color-fg-subtle: #94a3b8; /* teks sekunder */
+  --color-fg-faint: #263049; /* ikon/aksen sangat redup */
+  --color-accent-text: #818cf8; /* aksen untuk teks/garis di atas latar */
+  --color-warning: #fcd34d; /* teks peringatan */
+  --color-dot: rgb(148 163 184 / 0.14); /* titik tekstur latar halaman */
+
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace,
+    "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* Nilai tema TERANG. Utility Tailwind (bg-surface, text-fg, dst.) di-compile
+   menjadi var(--color-...) sehingga override ini langsung berlaku tanpa
+   perlu menyentuh satu pun komponen. */
+html.light {
+  --color-page: #f8fafc;
+  --color-surface: #ffffff;
+  --color-raised: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-fg: #0f172a;
+  --color-fg-muted: #334155;
+  --color-fg-subtle: #475569;
+  --color-fg-faint: #cbd5e1;
+  --color-accent-text: #4f46e5;
+  --color-warning: #b45309;
+  --color-dot: rgb(15 23 42 / 0.1);
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset untuk navbar sticky */
+  color-scheme: dark;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) var(--color-page);
+}
+
+html.light {
+  color-scheme: light;
+}
+
+body {
+  /* Tekstur grid titik halus — warna titik mengikuti tema via --color-dot */
+  background-image: radial-gradient(circle, var(--color-dot) 1px, transparent 1px);
+  background-size: 32px 32px;
+  @apply bg-page text-fg font-sans antialiased;
+}
+
+/* Focus visibility untuk navigasi keyboard */
+:focus-visible {
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Scrollbar kustom (WebKit) — selaras dengan token tema */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border: 2px solid var(--color-page);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-text);
+}
+
+::selection {
+  background: var(--color-accent-600);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Utilitas visual & animasi
+   ========================================================================== */
+
+/* Teks bergradasi aksen (nama di hero, dsb.) */
+.text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-accent-400) 0%,
+    var(--color-accent-600) 48%,
+    #a78bfa 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Animasi "muncul saat masuk viewport" (lihat components/ui/Reveal.jsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Animasi masuk untuk hero (langsung saat halaman dimuat) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mengambang lembut untuk orb dekoratif */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+/* Gradien yang bergerak perlahan */
+@keyframes gradient-pan {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+/* Petunjuk scroll di hero */
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-float {
+  animation: float-slow 9s ease-in-out infinite;
+}
+.animate-gradient-pan {
+  background-size: 200% auto;
+  animation: gradient-pan 6s linear infinite;
+}
+.animate-scroll-hint {
+  animation: scroll-hint 1.8s ease-in-out infinite;
+}
+
+/* Hormati preferensi reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .animate-fade-up {
+    opacity: 1;
+    transform: none;
+  }
+  .animate-float,
+  .animate-gradient-pan,
+  .animate-scroll-hint {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

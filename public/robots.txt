@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Sitemap belum tersedia karena domain produksi belum diketahui.
+# Setelah deploy, tambahkan baris berikut dengan domain Anda:
+# Sitemap: https://<domain-anda>/sitemap.xml
