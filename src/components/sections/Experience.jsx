@@ -49,7 +49,7 @@ export default function Experience() {
           subtitle={t('experience.subtitle')}
         />
 
-        <div className="grid gap-10 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
           {/* Pendidikan */}
           <div>
             <h3 className="mb-6 flex items-center gap-2 font-mono text-xs font-medium tracking-widest text-fg-subtle uppercase">

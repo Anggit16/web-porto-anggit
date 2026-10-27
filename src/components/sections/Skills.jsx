@@ -23,7 +23,7 @@ export default function Skills() {
           subtitle={t('skills.subtitle')}
         />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group) => {
             const Icon = GROUP_ICONS[group.id] || Terminal
             const hasItems = group.items.length > 0

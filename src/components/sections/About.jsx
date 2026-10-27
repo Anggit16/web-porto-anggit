@@ -29,7 +29,9 @@ export default function About() {
           subtitle={t('about.subtitle')}
         />
 
-        <div className="grid gap-10 lg:grid-cols-5">
+        {/* grid-cols-1 = track minmax(0,1fr): teks nowrap di dalamnya tidak
+            boleh memaksa lebar track melebihi viewport (lihat grid-cols-1). */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-5">
           {/* Kolom kiri: paragraf */}
           <div className="flex flex-col gap-5 lg:col-span-3">
             {Array.isArray(paragraphs) &&

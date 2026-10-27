@@ -44,7 +44,7 @@ export default function Contact() {
           subtitle={t('contact.subtitle')}
         />
 
-        <div className="grid gap-10 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           {/* CTA kolaborasi */}
           <div className="flex flex-col gap-5 rounded-xl border border-border bg-surface p-8">
             <div className="flex items-center gap-3">
