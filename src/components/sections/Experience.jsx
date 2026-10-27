@@ -10,12 +10,12 @@ function TimelineItem({ icon: Icon, title, subtitle, period, isLast }) {
       {!isLast && (
         <span
           aria-hidden="true"
-          className="absolute top-10 left-[19px] h-full w-px bg-gradient-to-b from-border-strong to-transparent"
+          className="absolute top-10 left-4.75 h-full w-px bg-linear-to-b from-border-strong to-transparent"
         />
       )}
 
       {/* Ikon */}
-      <span className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-strong bg-gradient-to-br from-accent-600/20 to-accent-500/5 text-accent-text">
+      <span className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-strong bg-linear-to-br from-accent-600/20 to-accent-500/5 text-accent-text">
         <Icon size={17} aria-hidden="true" />
       </span>
 

@@ -19,7 +19,7 @@ export default function SectionHeading({
       <span className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className="h-px w-8 bg-gradient-to-r from-transparent to-accent-text/70"
+          className="h-px w-8 bg-linear-to-r from-transparent to-accent-text/70"
         />
         <span className="font-mono text-xs font-medium tracking-widest text-accent-text uppercase">
           {label}
@@ -27,7 +27,7 @@ export default function SectionHeading({
         <span
           aria-hidden="true"
           className={cn(
-            'h-px w-8 bg-gradient-to-l from-transparent to-accent-text/70',
+            'h-px w-8 bg-linear-to-l from-transparent to-accent-text/70',
             !isLeft && 'block',
           )}
         />

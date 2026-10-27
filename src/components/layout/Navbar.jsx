@@ -5,6 +5,7 @@ import { profile } from '../../data/site'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { scrollToSection } from '../../utils/scroll'
 import { cn } from '../../utils/cn'
+import LogoMark from '../ui/LogoMark'
 import ThemeToggle from '../ui/ThemeToggle'
 
 const NAV_ITEMS = [
@@ -113,16 +114,14 @@ export default function Navbar() {
         aria-label={t('a11y.mainNav')}
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
       >
-        {/* Logo / monogram */}
+        {/* Logo mark */}
         <button
           type="button"
           onClick={() => handleNavClick('home')}
           className="group flex items-center gap-2.5"
           aria-label={`${profile.name} — ${t('nav.home')}`}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-accent-600 to-accent-500 font-mono text-sm font-bold text-white shadow-sm shadow-accent-600/30 transition-transform duration-200 group-hover:scale-105">
-            {profile.monogram}
-          </span>
+          <LogoMark size="md" />
           <span className="hidden text-sm font-semibold text-fg sm:block">
             {profile.name}
           </span>
@@ -147,7 +146,7 @@ export default function Navbar() {
                 <span
                   aria-hidden="true"
                   className={cn(
-                    'absolute inset-x-3 -bottom-[9px] h-0.5 rounded-full bg-gradient-to-r from-accent-600 to-accent-400 transition-all duration-300',
+                    'absolute inset-x-3 -bottom-2.25 h-0.5 rounded-full bg-linear-to-r from-accent-600 to-accent-400 transition-all duration-300',
                     activeSection === id ? 'opacity-100' : 'opacity-0',
                   )}
                 />
@@ -209,7 +208,7 @@ export default function Navbar() {
       {/* Indikator progres baca halaman */}
       <span
         aria-hidden="true"
-        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-accent-600 to-accent-400 transition-[width] duration-150 ease-out"
+        className="absolute bottom-0 left-0 h-0.5 bg-linear-to-r from-accent-600 to-accent-400 transition-[width] duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />
     </header>

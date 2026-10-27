@@ -24,7 +24,7 @@ export default function Button({
 
   const variants = {
     primary:
-      'bg-gradient-to-r from-accent-600 to-accent-500 text-white ' +
+      'bg-linear-to-r from-accent-600 to-accent-500 text-white ' +
       'shadow-sm shadow-accent-600/30 ' +
       'hover:shadow-lg hover:shadow-accent-600/30 hover:brightness-110',
     outline:

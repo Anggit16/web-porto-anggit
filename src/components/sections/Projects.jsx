@@ -232,7 +232,7 @@ export default function Projects() {
               className={cn(
                 'rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200',
                 activeFilter === cat
-                  ? 'bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-sm shadow-accent-600/30'
+                  ? 'bg-linear-to-r from-accent-600 to-accent-500 text-white shadow-sm shadow-accent-600/30'
                   : 'border border-border-strong text-fg-subtle hover:border-accent-text hover:bg-accent-600/5 hover:text-accent-text',
               )}
             >

@@ -23,7 +23,7 @@ export default function ProjectCard({ project, categoryLabel, onOpen, className 
       {/* Garis aksen muncul saat hover */}
       <span
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 z-10 h-0.5 scale-x-0 bg-gradient-to-r from-accent-600 to-accent-400 transition-transform duration-300 group-hover:scale-x-100"
+        className="absolute inset-x-0 top-0 z-10 h-0.5 scale-x-0 bg-linear-to-r from-accent-600 to-accent-400 transition-transform duration-300 group-hover:scale-x-100"
       />
 
       {/* Media: rasio tetap 16:9 agar tidak ada layout shift */}

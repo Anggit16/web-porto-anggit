@@ -2,6 +2,7 @@ import { ArrowUp } from 'lucide-react'
 import { useLanguage } from '../../i18n/LanguageContext'
 import { profile, socialLinks, contactInfo } from '../../data/site'
 import { scrollToSection, scrollToTop } from '../../utils/scroll'
+import LogoMark from '../ui/LogoMark'
 import SocialLinks from '../ui/SocialLinks'
 
 const YEAR = new Date().getFullYear()
@@ -26,16 +27,14 @@ export default function Footer() {
       {/* Garis aksen gradasi di atas footer */}
       <span
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-500/50 to-transparent"
+        className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent-500/50 to-transparent"
       />
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           {/* Identitas */}
           <div className="max-w-sm">
             <div className="mb-3 flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent-600 to-accent-500 font-mono text-xs font-bold text-white">
-                {profile.monogram}
-              </span>
+              <LogoMark size="sm" />
               <span className="text-sm font-semibold text-fg">{profile.name}</span>
             </div>
             <p className="text-sm leading-relaxed text-fg-subtle">

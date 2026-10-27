@@ -3,6 +3,7 @@ import { useLanguage } from '../../i18n/LanguageContext'
 import { profile, socialLinks, contactInfo, techHighlights } from '../../data/site'
 import { scrollToSection } from '../../utils/scroll'
 import Button from '../ui/Button'
+import LogoMark from '../ui/LogoMark'
 import SocialLinks from '../ui/SocialLinks'
 
 export default function Hero() {
@@ -20,7 +21,7 @@ export default function Hero() {
       {/* Garis aksen halus di atas */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-500/40 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent-500/40 to-transparent"
       />
 
       {/* Orb dekoratif lokal */}
@@ -37,7 +38,7 @@ export default function Hero() {
         <div className="flex flex-col items-start gap-7">
           {/* Badge status ketersediaan */}
           <span
-            className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3.5 py-1.5 font-mono text-xs tracking-wide text-fg-muted backdrop-blur"
+            className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3.5 py-1.5 font-mono text-xs tracking-wide text-fg-muted backdrop-blur-sm"
             style={{ animationDelay: '40ms' }}
           >
             <span className="relative flex h-2 w-2" aria-hidden="true">
@@ -47,14 +48,14 @@ export default function Hero() {
             {t('hero.available')}
           </span>
 
-          {/* Monogram / avatar placeholder dengan ring gradasi */}
+          {/* Foto profil — fallback berupa mark identitas bila foto tidak ada */}
           <div
             className="animate-fade-up relative"
             style={{ animationDelay: '100ms' }}
           >
             <div
               aria-hidden="true"
-              className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-accent-600/40 via-accent-500/20 to-transparent blur-md"
+              className="absolute -inset-1 rounded-2xl bg-linear-to-tr from-accent-600/40 via-accent-500/20 to-transparent blur-md"
             />
             {profile.photo ? (
               <img
@@ -69,15 +70,7 @@ export default function Hero() {
                 className="relative h-20 w-20 rounded-2xl border border-border-strong object-cover object-top sm:h-24 sm:w-24"
               />
             ) : (
-              <div
-                className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-border-strong bg-raised sm:h-24 sm:w-24"
-                role="img"
-                aria-label={t('hero.monogramAlt')}
-              >
-                <span className="font-mono text-2xl font-bold text-accent-text sm:text-3xl">
-                  {profile.monogram}
-                </span>
-              </div>
+              <LogoMark size="hero" label={t('hero.logoAlt')} />
             )}
           </div>
 

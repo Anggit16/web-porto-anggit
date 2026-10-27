@@ -34,7 +34,7 @@ export default function Skills() {
                 className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-text/40 hover:shadow-xl hover:shadow-accent-600/10"
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-accent-600/20 to-accent-500/5 text-accent-text transition-transform duration-300 group-hover:scale-110">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-linear-to-br from-accent-600/20 to-accent-500/5 text-accent-text transition-transform duration-300 group-hover:scale-110">
                     <Icon size={17} aria-hidden="true" />
                   </div>
                   <h3 className="text-sm font-semibold text-fg">

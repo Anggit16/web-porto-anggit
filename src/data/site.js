@@ -8,14 +8,13 @@
 
 export const profile = {
   name: 'Anggit Hardiyanto',
-  monogram: 'AH',
   // Foto profil di public/ (Vite menyajikan isi public/ di root URL).
   // File sudah dioptimasi 512x682 agar ringan; jangan ditimpa dengan file besar.
   photo: '/images/profile.jpeg',
   education: {
     degree: 'Teknik Informatika', // program studi — dikonfirmasi
     // ⚠️ PLACEHOLDER: nama institusi belum dikonfirmasi
-    institution: null,
+    institution: 'Universitas Duta Bangsa Surakarta',
   },
   // ⚠️ PLACEHOLDER: ringkasan singkat untuk tab/preview (bisa disesuaikan)
   tagline: 'Software Developer',
@@ -23,21 +22,21 @@ export const profile = {
 
 /** Tautan sosial — null = TIDAK ditampilkan (tanpa tautan dummy). */
 export const socialLinks = {
-  github: null, // ⚠️ PLACEHOLDER: isi URL GitHub yang valid
-  linkedin: null, // ⚠️ PLACEHOLDER: isi URL LinkedIn yang valid
+  github: 'https://github.com/Anggit16', // ⚠️ PLACEHOLDER: isi URL GitHub yang valid
+  linkedin: 'https://www.linkedin.com/in/anggit-hardiyanto-505035447?utm_source=share_via&utm_content=profile&utm_medium=member_android', // ⚠️ PLACEHOLDER: isi URL LinkedIn yang valid
 }
 
 export const contactInfo = {
   // ⚠️ PLACEHOLDER: alamat email kerja belum dikonfirmasi
-  email: null,
-  location: null, // opsional — isi jika ingin ditampilkan
+  email: 'anggithardiyanto228@gmail.com',
+  location: 'Sukoharjo, Jawa Tengah, Indonesia', // opsional — isi jika ingin ditampilkan
 }
 
 /**
  * File CV di public/cv/. Set null jika belum ada —
  * tombol unduh akan disembunyikan secara otomatis.
  */
-export const cvFile = null // mis. '/cv/anggit-hardiyanto-cv.pdf'
+export const cvFile = '/cv/cv-anggit-software-developer.pdf' // mis. '/cv/anggit-hardiyanto-cv.pdf'
 
 /** Ringkasan teknologi untuk Hero (urutan tampil). */
 export const techHighlights = [
@@ -45,7 +44,10 @@ export const techHighlights = [
   'PHP',
   'Python',
   'React.js',
+  'Next.js',
   'Laravel',
   'Node.js',
   'Kivy',
+  'Flutter',
+  'React Native'
 ]

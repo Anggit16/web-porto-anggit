@@ -50,7 +50,7 @@ export default function App() {
         <Navbar />
 
         {/* tabIndex -1 agar skip link memindahkan fokus ke konten utama */}
-        <main id="main-content" tabIndex={-1} className="outline-none">
+        <main id="main-content" tabIndex={-1} className="outline-hidden">
           <Hero />
           <div className="divide-y divide-border">
             <Reveal>

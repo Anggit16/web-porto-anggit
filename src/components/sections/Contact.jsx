@@ -30,7 +30,7 @@ const CHANNEL_META = [
 ]
 
 const ICON_BADGE =
-  'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-accent-600/20 to-accent-500/5 text-accent-text'
+  'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-accent-600/20 to-accent-500/5 text-accent-text'
 
 export default function Contact() {
   const { t } = useLanguage()
@@ -97,9 +97,13 @@ export default function Contact() {
               </div>
             ))}
 
-            <p className="text-xs leading-relaxed text-fg-subtle">
-              {t('contact.setupNote')}
-            </p>
+            {/* Catatan setup hanya tampil bila masih ada kanal yang belum diisi.
+                Bila semua kanal sudah terisi, catatan ini justru menyesatkan. */}
+            {CHANNEL_META.some((channel) => !channel.href) && (
+              <p className="text-xs leading-relaxed text-fg-subtle">
+                {t('contact.setupNote')}
+              </p>
+            )}
           </div>
         </div>
       </div>

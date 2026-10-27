@@ -11,7 +11,7 @@ const CARD =
   'rounded-xl border border-border bg-surface p-6 transition-all duration-300 hover:border-accent-text/40 hover:shadow-lg hover:shadow-accent-600/5'
 
 const ICON_BADGE =
-  'flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-accent-600/20 to-accent-500/5 text-accent-text'
+  'flex h-9 w-9 items-center justify-center rounded-lg bg-linear-to-br from-accent-600/20 to-accent-500/5 text-accent-text'
 
 export default function About() {
   const { t } = useLanguage()
@@ -39,38 +39,77 @@ export default function About() {
                 </p>
               ))}
 
-            {/* CV download */}
-            <div className={cn('mt-4', CARD)}>
-              <div className="mb-4 flex items-center gap-3">
-                <div className={ICON_BADGE}>
-                  <Download size={17} aria-hidden="true" />
-                </div>
-                <h3 className="text-sm font-semibold text-fg">
-                  {t('about.cvTitle')}
-                </h3>
-              </div>
-              {cvStatus === 'available' ? (
-                <Button as="a" href={cvFile} download variant="primary">
-                  <Download size={16} aria-hidden="true" />
-                  {t('about.cvButton')}
-                </Button>
-              ) : (
-                <p
-                  role="status"
-                  className={cn(
-                    'text-sm leading-relaxed',
-                    cvStatus === 'missing'
-                      ? 'rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-warning'
-                      : 'text-fg-subtle',
-                  )}
+            {/* Kartu CV — lembar dokumen dekoratif + aksi unduh nyata.
+                Lembar di kiri murni visual (aria-hidden) supaya kartu tidak
+                terasa kosong; teks & tombol tetap satu-satunya sumber info. */}
+            <div className={cn('group mt-4', CARD)}>
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-7">
+                {/* Lembar CV dekoratif — warnanya mengikuti token tema */}
+                <div
+                  aria-hidden="true"
+                  className="relative w-24 shrink-0 self-start rounded-lg border border-border bg-raised p-3 shadow-lg shadow-black/10 transition-transform duration-300 group-hover:-rotate-3"
                 >
-                  {cvStatus === 'checking'
-                    ? t('about.cvChecking')
-                    : cvStatus === 'missing'
-                      ? t('about.cvError')
-                      : t('about.cvUnavailable')}
-                </p>
-              )}
+                  <span className="absolute right-1.5 top-1.5 rounded-sm bg-accent-600 px-1.5 py-0.5 font-mono text-[10px] font-bold leading-none text-white">
+                    PDF
+                  </span>
+                  <span className="mb-2.5 block h-3 w-3 rounded-sm bg-accent-text/70" />
+                  <span className="mb-1.5 block h-1.5 w-full rounded-full bg-fg-faint" />
+                  <span className="mb-1.5 block h-1.5 w-4/5 rounded-full bg-fg-faint" />
+                  <span className="mb-1.5 block h-1.5 w-full rounded-full bg-fg-faint" />
+                  <span className="mb-1.5 mt-3 block h-1.5 w-full rounded-full bg-fg-faint" />
+                  <span className="block h-1.5 w-3/5 rounded-full bg-fg-faint" />
+                </div>
+
+                {/* Informasi & aksi */}
+                <div className="flex min-w-0 flex-1 flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className={ICON_BADGE}>
+                      <Download size={17} aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-semibold text-fg">
+                        {t('about.cvTitle')}
+                      </h3>
+                      <p className="truncate text-xs text-fg-subtle">
+                        {profile.name} · {profile.tagline}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Nama berkas diambil langsung dari data — bukan teks karangan */}
+                  {cvFile && (
+                    <p
+                      className="truncate font-mono text-xs text-fg-muted"
+                      title={cvFile.split('/').pop()}
+                    >
+                      {cvFile.split('/').pop()}
+                    </p>
+                  )}
+
+                  {cvStatus === 'available' ? (
+                    <Button as="a" href={cvFile} download variant="primary">
+                      <Download size={16} aria-hidden="true" />
+                      {t('about.cvButton')}
+                    </Button>
+                  ) : (
+                    <p
+                      role="status"
+                      className={cn(
+                        'text-sm leading-relaxed',
+                        cvStatus === 'missing'
+                          ? 'rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-warning'
+                          : 'text-fg-subtle',
+                      )}
+                    >
+                      {cvStatus === 'checking'
+                        ? t('about.cvChecking')
+                        : cvStatus === 'missing'
+                          ? t('about.cvError')
+                          : t('about.cvUnavailable')}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 

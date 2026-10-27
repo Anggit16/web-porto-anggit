@@ -11,7 +11,7 @@ export const skillGroups = [
   },
   {
     id: 'frontend',
-    items: ['React.js'],
+    items: ['React.js', 'Next. js'],
   },
   {
     id: 'backend',
@@ -19,12 +19,12 @@ export const skillGroups = [
   },
   {
     id: 'mobile',
-    items: ['Kivy'],
+    items: ['Kivy', 'Flutter', 'React Native'],
   },
   {
     // ⚠️ PLACEHOLDER: daftar tools/workflow belum dikonfirmasi.
     // Tambahkan item (mis. 'Git') agar grup ini tampil terisi.
     id: 'tools',
-    items: [],
+    items: ['Git', 'GitHub', 'Visual Studio Code'],
   },
 ]
