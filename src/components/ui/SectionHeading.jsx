@@ -16,7 +16,8 @@ export default function SectionHeading({
 
   return (
     <div className={cn('mb-12 flex flex-col gap-4 md:mb-16', alignment, className)}>
-      <span className="flex items-center gap-3">
+      {/* flex-wrap: label panjang di layar 320px tidak memaksa overflow */}
+      <span className="flex flex-wrap items-center gap-3">
         <span
           aria-hidden="true"
           className="h-px w-8 bg-linear-to-r from-transparent to-accent-text/70"

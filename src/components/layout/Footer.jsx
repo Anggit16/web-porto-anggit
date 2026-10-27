@@ -53,7 +53,8 @@ export default function Footer() {
                   <button
                     type="button"
                     onClick={() => handleNav(id)}
-                    className="text-sm text-fg-subtle transition-colors duration-200 hover:text-accent-text"
+                    /* py-1: tinggi target sentuh 28px (min. WCAG 24px) */
+                    className="py-1 text-sm text-fg-subtle transition-colors duration-200 hover:text-accent-text"
                   >
                     {label}
                   </button>

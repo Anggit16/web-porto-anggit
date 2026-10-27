@@ -106,6 +106,23 @@ body {
    Utilitas visual & animasi
    ========================================================================== */
 
+/* Tinggi viewport dinamis.
+   `100vh` di mobile mencakup area bilah alamat, sehingga elemen terasa
+   terpotong (hero & modal proyek). `dvh` mengikuti tinggi yang benar-benar
+   terlihat. Nilai vh tetap ditulis pada kelasnya masing-masing sebagai
+   fallback untuk browser lama yang belum mendukung dvh. */
+@supports (min-height: 100dvh) {
+  .viewport-fill {
+    min-height: 100dvh;
+  }
+}
+
+@supports (max-height: 100dvh) {
+  .viewport-modal {
+    max-height: 85dvh;
+  }
+}
+
 /* Teks bergradasi aksen (nama di hero, dsb.) */
 .text-gradient {
   background-image: linear-gradient(

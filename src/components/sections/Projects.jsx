@@ -75,7 +75,7 @@ function ProjectModal({ project, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
-        className="flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-border-strong bg-surface shadow-2xl shadow-black/30"
+        className="viewport-modal flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-border-strong bg-surface shadow-2xl shadow-black/30"
       >
         {/* Header modal */}
         <div className="flex items-start justify-between gap-4 border-b border-border p-5">
