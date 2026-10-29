@@ -90,9 +90,24 @@ describe('Section Projects — filter, empty state, modal', () => {
     expect(within(dialog).getByText('Deskripsi')).toBeInTheDocument()
     expect(within(dialog).getByText('Tantangan')).toBeInTheDocument()
     expect(within(dialog).getByText('Teknologi')).toBeInTheDocument()
-    expect(within(dialog).getAllByText(/akan dilengkapi/i).length).toBeGreaterThan(0)
-    // Tanpa tautan valid → pesan jujur, bukan tombol rusak
-    expect(within(dialog).getByText(/Tautan repository atau demo belum tersedia/i)).toBeInTheDocument()
+  })
+
+  it('proyek terisi menampilkan detail bilingual, tautan, tanpa placeholder', async () => {
+    const user = userEvent.setup()
+    renderProjects()
+
+    const cbt = projects.find((p) => p.id === 'computer-based-test')
+    const card = screen.getByText('Computer Based Test').closest('article')
+    await user.click(within(card).getByRole('button', { name: /Lihat Detail/i }))
+
+    const dialog = screen.getByRole('dialog')
+    // Bahasa aktif default = Indonesia → nilai `id` yang tampil
+    expect(within(dialog).getByText(cbt.details.challenge.id)).toBeInTheDocument()
+    // Data lengkap → tidak ada lagi placeholder maupun catatan status
+    expect(within(dialog).queryByText(/akan dilengkapi/i)).not.toBeInTheDocument()
+    expect(within(dialog).queryByText(/masih berupa placeholder/i)).not.toBeInTheDocument()
+    // URL valid dari data → tombol GitHub tertuju persis ke repo asli
+    expect(within(dialog).getByRole('link', { name: /GitHub/i })).toHaveAttribute('href', cbt.github)
   })
 
   it('menutup modal dengan tombol tutup', async () => {

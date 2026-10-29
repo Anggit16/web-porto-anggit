@@ -23,7 +23,7 @@ export const education = [
 export const experiences = [
   {
     id: 'project-master',
-    role: 'Software Developer',
+    role: 'Magang Software Developer',
     organization: 'Project Master ID',
     period: 'Ags 2025 - Jan 2026'
   }

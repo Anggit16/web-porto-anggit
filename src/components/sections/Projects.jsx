@@ -60,6 +60,10 @@ function ProjectModal({ project, onClose }) {
     { key: 'result', value: project.details.result },
   ]
 
+  // Catatan "masih placeholder" hanya tampil bila memang ada detail yang null —
+  // agar tidak kontradiktif ketika sebuah proyek sudah terisi penuh.
+  const hasUnconfirmedDetails = detailRows.some(({ value }) => value == null)
+
   // Hanya tampilkan tombol tautan bila URL benar-benar valid.
   const githubHref = isValidHttpUrl(project.github) ? project.github.trim() : null
   const demoHref = isValidHttpUrl(project.demo) ? project.demo.trim() : null
@@ -118,7 +122,11 @@ function ProjectModal({ project, onClose }) {
                   {t(`projects.modal.${key}`)}
                 </h4>
                 <p className="text-sm leading-relaxed text-fg-muted">
-                  {value || <em className="text-fg-subtle">{t('projects.modal.placeholder')}</em>}
+                  {value ? (
+                    t(value)
+                  ) : (
+                    <em className="text-fg-subtle">{t('projects.modal.placeholder')}</em>
+                  )}
                 </p>
               </div>
             ))}
@@ -173,10 +181,12 @@ function ProjectModal({ project, onClose }) {
               )}
             </div>
 
-            {/* Catatan placeholder */}
-            <p className="rounded-lg border border-border bg-raised p-4 text-sm leading-relaxed text-fg-subtle">
-              {t('projects.modal.statusPlaceholder')}
-            </p>
+            {/* Catatan status — hanya bila masih ada detail yang belum terkonfirmasi */}
+            {hasUnconfirmedDetails && (
+              <p className="rounded-lg border border-border bg-raised p-4 text-sm leading-relaxed text-fg-subtle">
+                {t('projects.modal.statusPlaceholder')}
+              </p>
+            )}
           </div>
         </div>
       </div>
