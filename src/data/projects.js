@@ -20,7 +20,7 @@ export const projects = [
     name: 'Computer Based Test',
     category: 'web-app',
     // ⚠️ PLACEHOLDER: gambar proyek — ganti dengan screenshot asli bila tersedia
-    image: '/images/welcome-cbt.png',
+    image: '/images/welcome-cbt.jpg',
     // Deskripsi faktual minimal dari jenis proyek:
     description: {
       id: 'Sistem ujian berbasis komputer dengan fitur penilaian esai otomatis.',
@@ -53,7 +53,7 @@ export const projects = [
     id: 'point-of-sale',
     name: 'Point of Sale',
     category: 'web-app',
-    image: '/images/pointofsale.png',
+    image: '/images/pointofsale.jpg',
     description: {
       id: 'Aplikasi Point of Sale untuk pengelolaan transaksi penjualan.',
       en: 'A Point of Sale application for managing sales transactions.',
@@ -84,7 +84,7 @@ export const projects = [
     id: 'sudutjalan-kopi',
     name: 'Website SudutJalan Kopi',
     category: 'website',
-    image: '/images/sudutjalankopi.png',
+    image: '/images/sudutjalankopi.jpg',
     description: {
       id: 'Website profil untuk kedai kopi SudutJalan Kopi.',
       en: 'A profile website for the SudutJalan Kopi coffee shop.',
@@ -115,7 +115,7 @@ export const projects = [
     id: 'ekatalog-daging',
     name: 'Website Ekatalog Daging',
     category: 'website',
-    image: '/images/welcome-ekatalogdaging.png',
+    image: '/images/welcome-ekatalogdaging.jpg',
     description: {
       id: 'Website untuk memudahkan transaksi antara pembeli dan penjual melaluai chat commerce.',
       en: 'A website that facilitates transactions between buyers and sellers through chat commerce.',
@@ -146,7 +146,7 @@ export const projects = [
     id: 'absensi',
     name: 'Absensi',
     category: 'web-app',
-    image: '/images/absensi2.png',
+    image: '/images/absensi2.jpg',
     description: {
       id: 'Website absensi karyawan berdasarkan foto dan titik koordinat lokasi.',
       en: 'A web-based employee attendance system using photo verification and GPS location coordinates.',
@@ -177,7 +177,7 @@ export const projects = [
     id: 'ekatalog-jamu',
     name: 'Website Ekatalog Toko Jamu',
     category: 'website',
-    image: '/images/welcome-ekatalogjamu.png',
+    image: '/images/welcome-ekatalogjamu.jpg',
     description: {
       id: 'Website untuk memudahkan transaksi antara pembeli dan penjual melaluai chat commerce.',
       en: 'A website that facilitates transactions between buyers and sellers through chat commerce.',

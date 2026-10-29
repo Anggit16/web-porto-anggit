@@ -63,17 +63,18 @@ Semua data konten terpusat di folder `src/data/`. **Jangan mengisi informasi yan
 
 | File | Field | Status |
 |---|---|---|
-| `src/data/site.js` | `socialLinks.github` | ⚠️ URL GitHub belum diisi — isi untuk menampilkan tautan |
-| `src/data/site.js` | `socialLinks.linkedin` | ⚠️ URL LinkedIn belum diisi |
-| `src/data/site.js` | `contactInfo.email` | ⚠️ Alamat email kerja belum diisi |
+| `src/data/site.js` | `socialLinks.github` | ✅ `https://github.com/Anggit16` |
+| `src/data/site.js` | `socialLinks.linkedin` | ✅ Sudah terisi — tombol LinkedIn tampil |
+| `src/data/site.js` | `contactInfo.email` | ✅ Sudah terisi — tombol Email tampil |
 | `src/data/site.js` | `profile.photo` | ✅ **Sudah terisi** — `/images/profile.jpeg` (512×682, dioptimasi dari 84 kB → 33 kB). File asli 952×1269 disimpan di `assets/original/profile.jpeg` (di luar `public/`, tidak ikut ter-deploy) |
-| `src/data/site.js` | `cvFile` | ⚠️ CV — letakkan PDF di `public/cv/`, lalu isi path-nya |
-| `src/data/projects.js` | `projects[].technologies` | ⚠️ Asosiasi teknologi per proyek belum dikonfirmasi |
-| `src/data/projects.js` | `projects[].github` / `demo` | ⚠️ Tautan repo/demo — tombol hanya muncul jika diisi |
-| `src/data/projects.js` | `projects[].details` | ⚠️ Tantangan/solusi/peran/hasil — tampil placeholder sampai diisi |
-| `src/data/experience.js` | `education[].institution` / `period` | ⚠️ Institusi & tahun belum dikonfirmasi |
-| `src/data/experience.js` | `experiences` / `certifications` | ⚠️ Kosong = empty state jujur tampil di UI |
-| `src/data/skills.js` | `tools.items` | ⚠️ Daftar tools/workflow belum dikonfirmasi |
+| `src/data/site.js` | `cvFile` | ✅ `/cv/cv-anggit-software-developer.pdf` (52 kB) — tombol Unduh CV aktif |
+| `src/data/projects.js` | `projects[].image` | ✅ 6 screenshot di `/images/*.jpg` — lebar maks 1200 px, **total 3,2 MB → 376 kB**. File PNG asli disimpan di `assets/original/projects/` (di luar `public/`) |
+| `src/data/projects.js` | `projects[].technologies` | ✅ Terisi per proyek, tampil sebagai chip |
+| `src/data/projects.js` | `projects[].github` / `demo` | ✅ Semua `github` terisi, `demo` masih `null` (tombol demo tidak dirender). ⚠️ **5 dari 6 repo masih private** — GitHub membalas 404 bagi pengunjung sampai repo-nya dijadikan publik |
+| `src/data/projects.js` | `projects[].details` | ✅ Tantangan/solusi/peran/hasil terisi dalam `{ id, en }` |
+| `src/data/experience.js` | `education[].institution` / `period` | ✅ Universitas Duta Bangsa Surakarta, 2022 – 2026 |
+| `src/data/experience.js` | `experiences` / `certifications` | ✅ Pengalaman magang + sertifikasi Junior Web Programmer terisi |
+| `src/data/skills.js` | `tools.items` | ✅ Git, GitHub, Visual Studio Code |
 | `index.html` | SEO produksi | Tambahkan `og:url`, `canonical`, `og:image`/`twitter:image`, dan `sitemap.xml` setelah domain & aset nyata tersedia |
 
 Setelah mengubah file `src/data/`, cukup simpan — dev server hot-reload, dan `npm run build` untuk produksi.
