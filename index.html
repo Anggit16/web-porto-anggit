@@ -62,8 +62,218 @@
         }
       })()
     </script>
+
+    <!--
+      ===== Splash / loading screen awal =====
+      Markup ditulis statis di sini (bukan di React) agar langsung tampil
+      sebelum bundel JS dieksekusi. Warna sengaja ditulis eksplisit — bukan
+      var token — karena saat `dev` CSS aplikasi baru disuntikkan setelah
+      main.jsx berjalan, sehingga splash bisa sempat tanpa gaya.
+
+      GAYA: tile ikon + label sengaja menyontek tombol ID/EN di header
+      (bg-accent-600 / #4f46e5, font-mono text-xs font-medium tracking-wide
+      uppercase, text-fg-subtle) agar splash terasa satu bahasa desain.
+    -->
+    <style>
+      html.app-loading,
+      html.app-loading body {
+        overflow: hidden;
+      }
+
+      #app-loader {
+        /* Selaras dengan MIN_LOADER_MS di src/utils/appLoader.js (3 detik). */
+        --al-duration: 3s;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(120% 120% at 50% 0%, #141a2b 0%, #0a0c14 58%);
+        color: #94a3b8;
+        font-family: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+        transition:
+          opacity 0.5s ease,
+          visibility 0.5s ease;
+      }
+
+      html.light #app-loader {
+        background: radial-gradient(120% 120% at 50% 0%, #ffffff 0%, #eef2f7 60%);
+        color: #475569;
+      }
+
+      #app-loader.is-done {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .al-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.15rem;
+      }
+
+      /* Tile ikon — sengaja kembar dengan tombol ID/EN di header:
+         bg-accent-600 (#4f46e5) + ikon putih + sudut membulat. */
+      .al-mark {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 5.25rem;
+        height: 5.25rem;
+        border-radius: 1.25rem;
+        background: #4f46e5;
+        color: #ffffff;
+        box-shadow: 0 12px 34px -12px rgb(79 70 229 / 0.9);
+        animation: al-breathe 2.6s ease-in-out infinite;
+      }
+
+      /* Halo berdenyut di belakang tile (bukan animasi berat) */
+      .al-mark::before {
+        content: "";
+        position: absolute;
+        inset: -1.15rem;
+        border-radius: 2.4rem;
+        background: radial-gradient(circle, rgb(99 102 241 / 0.55), transparent 70%);
+        animation: al-pulse 1.9s ease-in-out infinite;
+      }
+
+      /* Glyph putih di dalam tile (mark.svg = glyph saja, tanpa latar) */
+      .al-mark img {
+        position: relative;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      /* Tipografi label mengikuti utility tombol ID/EN:
+         font-mono text-xs font-medium tracking-wide uppercase text-fg-subtle */
+      .al-name {
+        margin: 0;
+        font-family: "JetBrains Mono Variable", ui-monospace, monospace;
+        font-size: 0.75rem;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0.025em;
+        text-transform: uppercase;
+        color: inherit;
+      }
+
+      /* Bar progres: mengisi penuh selama splash tampil */
+      .al-bar {
+        position: relative;
+        width: 10.5rem;
+        height: 3px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgb(148 163 184 / 0.22);
+      }
+
+      .al-bar span {
+        position: absolute;
+        inset: 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #4f46e5, #818cf8);
+        transform-origin: left center;
+        animation: al-fill var(--al-duration) linear forwards;
+      }
+
+      @keyframes al-pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: scale(0.94);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.06);
+        }
+      }
+
+      @keyframes al-breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.045);
+        }
+      }
+
+      @keyframes al-fill {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      /* Hormati preferensi pengguna: tanpa animasi, tampilan tetap statis */
+      @media (prefers-reduced-motion: reduce) {
+        .al-mark,
+        .al-mark::before {
+          animation: none;
+        }
+        /* Bar langsung penuh — tanpa animasi pengisian */
+        .al-bar span {
+          animation: none;
+          transform: scaleX(1);
+          opacity: 0.6;
+        }
+      }
+    </style>
+    <noscript>
+      <style>
+        #app-loader {
+          display: none !important;
+        }
+      </style>
+    </noscript>
+    <script>
+      // Kunci scroll selama splash tampil + catat waktu mulai (dipakai util
+      // hideAppLoader untuk durasi tampil minimum).
+      document.documentElement.classList.add('app-loading')
+      window.__appLoaderShownAt = performance.now()
+
+      // Jaring aman: bila bundel gagal dimuat, splash tetap hilang sendiri
+      // (6 dtk = 3 dtk durasi + fade-out + kelonggaran).
+      setTimeout(function () {
+        var el = document.getElementById('app-loader')
+        if (!el) return
+        el.classList.add('is-done')
+        document.documentElement.classList.remove('app-loading')
+      }, 6000)
+    </script>
   </head>
   <body>
+    <div id="app-loader" role="status" aria-label="Memuat halaman">
+      <div class="al-stack">
+        <span class="al-mark">
+          <img src="/icons/mark.svg" alt="" width="40" height="40" decoding="async" />
+        </span>
+        <p class="al-name" id="app-loader-label">Memuat</p>
+        <span class="al-bar" aria-hidden="true"><span></span></span>
+      </div>
+    </div>
+    <script>
+      // Label aksesibel mengikuti bahasa tersimpan (kunci sama dengan LanguageContext).
+      ;(function () {
+        try {
+          var lang = localStorage.getItem('portfolio-language')
+          var el = document.getElementById('app-loader')
+          var label = document.getElementById('app-loader-label')
+          if (el) {
+            el.setAttribute('aria-label', lang === 'en' ? 'Loading page' : 'Memuat halaman')
+          }
+          // Label terlihat memakai bahasa tersimpan, sama seperti toggle ID/EN.
+          if (label) {
+            label.textContent = lang === 'en' ? 'Loading' : 'Memuat'
+          }
+        } catch {
+          /* abaikan — pakai label default */
+        }
+      })()
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
