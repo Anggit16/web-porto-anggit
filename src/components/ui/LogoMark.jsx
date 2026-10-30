@@ -19,8 +19,9 @@ const VARIANTS = {
   sm: { box: 'h-8 w-8 rounded-lg', icon: 15 },
   md: { box: 'h-9 w-9 rounded-xl', icon: 18 },
   hero: {
-    box: 'h-20 w-20 rounded-2xl border border-border-strong sm:h-24 sm:w-24',
-    icon: 38,
+    // Skala disamakan dengan foto profil di Hero: 120 → 144 (sm) → 160 (lg)
+    box: 'h-30 w-30 rounded-2xl border border-border-strong sm:h-36 sm:w-36 lg:h-40 lg:w-40',
+    icon: 56,
   },
 }
 

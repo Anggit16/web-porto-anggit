@@ -61,13 +61,14 @@ export default function Hero() {
               <img
                 src={profile.photo}
                 alt={t('hero.photoAlt', { name: profile.name })}
-                width="96"
-                height="96"
+                width="160"
+                height="160"
                 // Di atas layar → eager, tanpa menunggu lazy load.
                 loading="eager"
                 decoding="async"
                 // Foto sumber potret (3:4) → potong condong ke atas agar kepala tetap utuh.
-                className="relative h-20 w-20 rounded-2xl border border-border-strong object-cover object-top sm:h-24 sm:w-24"
+                // Skala bertingkat: 120px (mobile) → 144px (≥sm) → 160px (≥lg).
+                className="relative h-30 w-30 rounded-2xl border border-border-strong object-cover object-top sm:h-36 sm:w-36 lg:h-40 lg:w-40"
               />
             ) : (
               <LogoMark size="hero" label={t('hero.logoAlt')} />
