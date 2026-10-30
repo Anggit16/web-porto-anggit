@@ -95,6 +95,8 @@ export const translations = {
       empty:
         'Tidak ada proyek pada kategori ini. Silakan pilih kategori lain.',
       showAll: 'Tampilkan semua proyek',
+      scrollLabel:
+        'Daftar proyek — geser ke samping untuk melihat proyek lainnya',
       modal: {
         title: 'Detail Proyek',
         description: 'Deskripsi',
@@ -138,6 +140,9 @@ export const translations = {
       ctaText:
         'Saya menerima diskusi mengenai lowongan pekerjaan maupun proyek pengembangan website dan aplikasi. Silakan hubungi melalui kanal di bawah ini.',
       channelsTitle: 'Kanal Kontak',
+      ctaButton: 'Kirim Email',
+      gmailButton: 'Buka di Gmail',
+      mailSubject: 'Peluang kerja / proyek — dari portofolio',
       channels: {
         email: 'Email',
         github: 'GitHub',
@@ -146,13 +151,11 @@ export const translations = {
       unavailable: 'Belum tersedia',
       setupNote:
         'Kanal kontak akan diaktifkan setelah URL/email diisi di src/data/site.js.',
-      formNote:
-        'Situs ini belum memiliki formulir kontak terkonfigurasi. Tanpa backend pada tahap ini, silakan gunakan tautan email yang tersedia.',
     },
     footer: {
       menu: 'Menu',
       rights: 'Hak cipta dilindungi.',
-      builtWith: 'Dibangun dengan React & Tailwind CSS.',
+      builtWith: 'Dibangun dengan React & Tailwind CSS dengan tampilan responsif diberbagai ukuran device.',
     },
   },
 
@@ -245,6 +248,7 @@ export const translations = {
       empty:
         'No projects in this category. Please choose another category.',
       showAll: 'Show all projects',
+      scrollLabel: 'Project list — swipe sideways to see more projects',
       modal: {
         title: 'Project Details',
         description: 'Description',
@@ -289,6 +293,9 @@ export const translations = {
       ctaText:
         'I am happy to discuss job openings as well as website and application development projects. Please reach out through the channels below.',
       channelsTitle: 'Contact Channels',
+      ctaButton: 'Send Email',
+      gmailButton: 'Open in Gmail',
+      mailSubject: 'Job opportunity / project — from portfolio',
       channels: {
         email: 'Email',
         github: 'GitHub',
@@ -297,13 +304,11 @@ export const translations = {
       unavailable: 'Not available yet',
       setupNote:
         'Contact channels will be enabled once the URL/email is filled in at src/data/site.js.',
-      formNote:
-        'This site does not have a configured contact form yet. Without a backend at this stage, please use the available email link.',
     },
     footer: {
       menu: 'Menu',
       rights: 'All rights reserved.',
-      builtWith: 'Built with React & Tailwind CSS.',
+      builtWith: 'Built with React and Tailwind CSS, featuring a responsive design that adapts seamlessly to various screen sizes and devices.',
     },
   },
 }

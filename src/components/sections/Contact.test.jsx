@@ -37,8 +37,29 @@ describe('Section Contact — kanal tautan', () => {
     expect(screen.queryByRole('link', { name: /linkedin/i })).not.toBeInTheDocument()
   })
 
-  it('menjelaskan bahwa tidak ada formulir kontak (tanpa simulasi pengiriman)', () => {
+  it('tidak lagi menampilkan catatan teknis formulir kontak', () => {
     renderContact()
-    expect(screen.getByText(/belum memiliki formulir kontak/i)).toBeInTheDocument()
+    expect(screen.queryByText(/formulir kontak/i)).not.toBeInTheDocument()
+  })
+
+  it('menautkan CTA kolaborasi langsung ke email dengan subjek terisi', () => {
+    renderContact()
+
+    const cta = screen.getByRole('link', { name: /kirim email/i })
+    expect(cta.getAttribute('href')).toMatch(/^mailto:anggit@example\.com\?subject=/)
+    // mailto dibuka di aplikasi email, bukan tab baru
+    expect(cta).not.toHaveAttribute('target')
+  })
+
+  it('menyediakan alternatif "Buka di Gmail" untuk alamat yang sama', () => {
+    renderContact()
+
+    const gmail = screen.getByRole('link', { name: /buka di gmail/i })
+    const href = gmail.getAttribute('href')
+    expect(href).toContain('https://mail.google.com/mail/?view=cm&fs=1&to=anggit%40example.com')
+    expect(href).toMatch(/&su=/)
+    // Gmail dibuka di tab baru → wajib rel aman
+    expect(gmail).toHaveAttribute('target', '_blank')
+    expect(gmail).toHaveAttribute('rel', 'noopener noreferrer')
   })
 })

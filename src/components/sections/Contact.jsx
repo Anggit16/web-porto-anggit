@@ -1,17 +1,20 @@
-import { Mail, Send } from 'lucide-react'
+import { ExternalLink, Mail, Send } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons'
 import { useLanguage } from '../../i18n/LanguageContext'
 import { contactInfo, socialLinks } from '../../data/site'
 import { isValidHttpUrl, toMailto } from '../../utils/url'
+import Button from '../ui/Button'
 import SectionHeading from '../ui/SectionHeading'
 
 // Nilai yang tidak valid (null / malformed) → href null → tampil "belum tersedia".
+const EMAIL_HREF = toMailto(contactInfo.email)
+
 const CHANNEL_META = [
   {
     key: 'email',
     icon: Mail,
     value: contactInfo.email,
-    href: toMailto(contactInfo.email),
+    href: EMAIL_HREF,
   },
   {
     key: 'github',
@@ -35,6 +38,13 @@ const ICON_BADGE =
 export default function Contact() {
   const { t } = useLanguage()
 
+  // Subjek email dipakai bersama oleh kedua aksi (mailto & Gmail).
+  const emailSubject = encodeURIComponent(t('contact.mailSubject'))
+  // Alternatif untuk pengunjung yang memakai Gmail di browser (tanpa klien email).
+  const gmailComposeHref = EMAIL_HREF
+    ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactInfo.email.trim())}&su=${emailSubject}`
+    : null
+
   return (
     <section id="contact" className="py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -56,9 +66,26 @@ export default function Contact() {
               </h3>
             </div>
             <p className="leading-relaxed text-fg-muted">{t('contact.ctaText')}</p>
-            <p className="rounded-lg border border-border bg-raised p-4 text-sm leading-relaxed text-fg-subtle">
-              {t('contact.formNote')}
-            </p>
+
+            {/* Aksi langsung ke email — hanya dirender bila alamat di site.js valid */}
+            {EMAIL_HREF && (
+              <div className="flex flex-wrap gap-3">
+                <Button as="a" href={`${EMAIL_HREF}?subject=${emailSubject}`}>
+                  <Mail size={16} aria-hidden="true" />
+                  {t('contact.ctaButton')}
+                </Button>
+                <Button
+                  as="a"
+                  variant="outline"
+                  href={gmailComposeHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink size={16} aria-hidden="true" />
+                  {t('contact.gmailButton')}
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Kanal kontak */}

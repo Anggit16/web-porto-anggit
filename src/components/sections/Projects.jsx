@@ -251,15 +251,27 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Grid proyek / empty state */}
+        {/* Daftar proyek:
+            - mobile: track horizontal dengan snap → geser kanan/kiri
+            - ≥sm   : grid biasa (2 kolom), ≥lg 3 kolom */}
         {filtered.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            role="region"
+            aria-label={t('projects.scrollLabel')}
+            tabIndex={0}
+            className={cn(
+              '-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-pl-4 px-4 py-2',
+              'focus-visible:ring-2 focus-visible:ring-accent-text/70',
+              'sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:py-0 sm:scroll-pl-0 lg:grid-cols-3',
+            )}
+          >
             {filtered.map((project) => (
               <ProjectCard
                 key={project.id}
                 project={project}
                 categoryLabel={t(`projects.filters.${project.category}`)}
                 onOpen={openModal}
+                className="w-72 max-w-[85vw] shrink-0 snap-start sm:w-auto sm:max-w-none"
               />
             ))}
           </div>
